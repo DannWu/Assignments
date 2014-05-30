@@ -21,35 +21,35 @@ using namespace std;
 class fileReader
 {
 public:
-	//constructor will open fileName as ifstream. No default constructor necessary
+		//Constructor will open fileName as ifstream. No default constructor necessary
 	fileReader(const char* fileName);
 	~fileReader();
 	
 
-	//helper function to add currentActor to vecActorList if currentActor 
-	//is not already in the vector
+		//Helper function to add currentActor to vecActorList if currentActor 
+		//is not already in the vector
 	void addToVector(vector<string> &vecActorList, string currentActor);
 
 
-	//helper function returns 'firstname space lastname' from the string actorLine
+		//Helper function returns 'firstname space lastname' from the string actorLine
 	string parseActorName(string actorLine);
 
 
-	//helper function returns movie title from movieLine
+		//Helper function returns movie title from movieLine
 	string parseMovieTitle(string movieLine);
 
 
-	//parseEntry will store the actor name in actorName and all his movies in vecMovieList
+		//parseEntry will store the actor name in actorName and all his movies in vecMovieList
 	void parseEntry(string &actorName, vector<string> &vecMovieList);
 
 
-	//using movie, searchActors will find all actors and store them in 
-	//vecActorList if actor is not already in the vector
+		//Using movie, searchActors will find all actors and store them in 
+		//vecActorList if actor is not already in the vector
 	void searchActors(vector<string> &vecActorList, string movie);
 
 
-	//using actor, searchCoStars will find all costars and store them in 
-	//vecCoStars if costar is not already in the vector
+		//Using actor, searchCoStars will find all costars and store them in 
+		//vecCoStars if costar is not already in the vector
 	void searchCoStars(vector<string> &vecCoStars, string actor);
 
 private:

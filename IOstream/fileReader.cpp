@@ -52,10 +52,10 @@ string fileReader::parseActorName(string actorLine)
 	getline(actorNameStream, lname, ',');
 	getline(actorNameStream, fname);
 
-	//fullname is now fname space lname as the sample output displays
+		//Fullname is now fname space lname as the sample output displays
 	fullname = fname + " " + lname;
 
-	//removes the space before the first name
+		//Removes the space before the first name
 	return fullname.substr(1);
 }
 
@@ -67,7 +67,7 @@ string fileReader::parseMovieTitle(string movieLine)
 	movieTitleStream << movieLine;
 	getline(movieTitleStream, movieTitle, '(');
 
-	//removes the first tab and the space before the '('
+		//Removes the first tab and the space before the '('
 	return movieTitle.substr(1,movieTitle.length()-2);
 }
 
@@ -78,7 +78,7 @@ void fileReader::parseEntry(string &actorName, vector<string> &vecMovieList)
 	getline(actorListFile, currentLine);
 	if (currentLine[0] != '\t' && !currentLine.empty())
 	{
-		//Then I know this line has to contain name of Actor
+			//Then I know this line has to contain name of Actor
 		actorName = parseActorName(currentLine);
 		getline(actorListFile, currentLine);
 		while (currentLine[0] == '\t' && !actorListFile.eof())
@@ -140,8 +140,8 @@ void fileReader::searchCoStars(vector<string> &vecCoStars, string actor)
 	{
 		if (vecCoStars[i] == actor)
 		{
-			//since my function adds the actor himself to the costar vector, 
-			//I must now delete him from the vector
+				//Since my function adds the actor himself to the costar vector, 
+				//I must now delete him from the vector
 			vecCoStars.erase(vecCoStars.begin()+i);
 		}
 	}

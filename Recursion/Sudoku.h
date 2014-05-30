@@ -14,36 +14,36 @@
 class Sudoku
 {
 public:
-	//Initializes all values to 0
+		//Initializes all values to 0
 	Sudoku();
 	~Sudoku();
 	
 
-	//displays entire board to standard output
+		//displays entire board to standard output
 	void displayBoard();
 
 
-	//returns true if the board is a valid Sudoku board
+		//returns true if the board is a valid Sudoku board
 	bool isValid(int row, int col);
 
 
-	//returns false if duplicate is found in row
-	//is used by isValid()
+		//Returns false if duplicate is found in row
+		//is used by isValid()
 	bool isHorizontalValid(int row);
 
 
-	//returns false if duplicate is found in col
-	//is used by isValid()
+		//Returns false if duplicate is found in col
+		//is used by isValid()
 	bool isVerticalValid(int col);
 
 
-	//returns false if duplicate is found in subgrid
-	//is used by isValid()
+		//Returns false if duplicate is found in subgrid
+		//is used by isValid()
 	bool isSubGridValid(int row, int col);
 
 
-	//detailed explanation in function
-	//is used by isSubGridValid
+		//Detailed explanation in function
+		//is used by isSubGridValid
 	bool checkGridHelper(int row, int col);
 
 

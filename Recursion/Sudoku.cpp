@@ -23,7 +23,7 @@ Sudoku::Sudoku()
 	{
 		for (int j = 0; j < 9; ++j)
 		{
-			//initializes all values to 0
+			//Initializes all values to 0
 			board[i][j] = 0;
 		}
 	}
@@ -57,14 +57,14 @@ bool Sudoku::isHorizontalValid(int row)
 
 	for (int i = 0; i < 9; ++i)
 	{
-		//if not default value of 0, there are contents I want to store
+			//If not default value of 0, there are contents I want to store
 		if (board[row][i] != 0)
 		{
 			rowContents.push_back(board[row][i]);
 		}
 	}
 
-	//the actual check
+		//The actual check
 	for (int i = 0; i < rowContents.size(); ++i)
 	{
 		currentNumber = rowContents[i];
@@ -87,14 +87,14 @@ bool Sudoku::isVerticalValid(int col)
 
 	for (int i = 0; i < 9; ++i)
 	{
-		//if not default value of 0, there are contents I want to store
+			//If not default value of 0, there are contents I want to store
 		if (board[i][col] != 0)
 		{
 			colContents.push_back(board[i][col]);
 		}
 	}
 
-	//the actual check
+		//The actual check
 	for (int i = 0; i < colContents.size(); ++i)
 	{
 		currentNumber = colContents[i];
@@ -112,9 +112,9 @@ bool Sudoku::isVerticalValid(int col)
 
 bool Sudoku::isSubGridValid(int row, int col)
 {
-	//this function returns the top left index
-	//of the subgrid you are trying to check.
-	//the actual check is delegated to checkGridHelper
+		//This function returns the top left index
+		//of the subgrid you are trying to check.
+		//the actual check is delegated to checkGridHelper
 	if ((row <= 2) && (col <= 2))
 	{
 		return checkGridHelper(0,0);
@@ -156,9 +156,9 @@ bool Sudoku::isSubGridValid(int row, int col)
 
 bool Sudoku::checkGridHelper(int row, int col)
 {
-	//I wanted a systematic way to check each subgrid.
-	//This only works if I can correctly identify which subgrid
-	//I'm in, and the above function does exactly that. 
+		//I wanted a systematic way to check each subgrid.
+		//This only works if I can correctly identify which subgrid
+		//I'm in, and the above function does exactly that. 
 	int currentNumber;
 	int reset = col;
 	vector<int> subGridContents;
@@ -167,16 +167,18 @@ bool Sudoku::checkGridHelper(int row, int col)
 	{
 		for (int j = 0; j < 3; ++j)
 		{
-			//if not default value of 0, there are contents I want to store
+				//If not default value of 0, there are contents I want to store
 			if (board[row][col] != 0) 
 			{
 				subGridContents.push_back(board[row][col]);
 			}
-			//do this three times. ex: [0,0] [0,1] [0,2]
+				//Do this three times. ex: [0,0] [0,1] [0,2]
 			col += 1;
 		}
-		col = reset; //must reset col back to original value
-		//do this three times.  ex: [1,0] [1,1] [1,2]
+			//must reset col back to original value
+		col = reset; 
+
+			//Do this three times.  ex: [1,0] [1,1] [1,2]
 		row += 1;
 	}
 	
@@ -198,17 +200,17 @@ bool Sudoku::checkGridHelper(int row, int col)
 
 int Sudoku::nextIPosition(int row, int col)
 {
-	//I needed a systematic way to access each element in array
-	//this, used in conjunction with nextJposition, achieves the
-	//desired outcome.
+		//I needed a systematic way to access each element in array
+		//this, used in conjunction with nextJposition, achieves the
+		//desired outcome.
 
-	//I chose to move horizontally, then down
-	//So if col is 8 (last column), I need to move to next row
+		//I chose to move horizontally, then down
+		//So if col is 8 (last column), I need to move to next row
 	if (col == 8)
 	{
 		return row + 1;
 	}
-	//else stay on the same row (i is the same)
+		//else stay on the same row (i is the same)
 	else
 	{
 		return row;
@@ -218,13 +220,13 @@ int Sudoku::nextIPosition(int row, int col)
 
 int Sudoku::nextJPosition(int col)
 {
-	//If col isn't 8 (the last column)
-	//move on to the next column
+		//If col isn't 8 (the last column)
+		//move on to the next column
 	if (col != 8)
 	{
 		return col + 1;
 	}
-	//else return to first column 
+		//else return to first column 
 	else
 	{
 		return 0;
@@ -242,18 +244,18 @@ void Sudoku::generateBoard()
 
 bool Sudoku::recursiveFill(int row, int col)
 {
-	//If board[8][8] isn't default value,
-	//then the board has been filled successfully! Cheers!
+		//If board[8][8] isn't default value,
+		//then the board has been filled successfully! Cheers!
 	if (board[8][8] != 0)
 	{
 		return true;
 	}
 
-	//Without randomNumber, it would generate the same board
-	//for each initial number at board[0][0]
+		//Without randomNumber, it would generate the same board
+		//for each initial number at board[0][0]
 	int randomNumber = rand() % 9 + 1;
 
-	//Attempts to fill in board[row][col] with randomNumber to 10
+		//Attempts to fill in board[row][col] with randomNumber to 10
 	for (int i = randomNumber; i < 10; ++i)
 	{
 		board[row][col] = i;
@@ -264,12 +266,12 @@ bool Sudoku::recursiveFill(int row, int col)
 				return true;
 			}
 		}
-		//recursion unsuccessful, revert board[row][col] back to default value of 0
+			//Recursion unsuccessful, revert board[row][col] back to default value of 0
 		board[row][col] = 0;
 	}
 
-	//If that fails, this attempts to fill in board[row][col] with 1 to randomNumber.
-	//This combined with the above for loop is exhaustive from 1 to 9
+		//If that fails, this attempts to fill in board[row][col] with 1 to randomNumber.
+		//This combined with the above for loop is exhaustive from 1 to 9
 	for (int i = 10 - randomNumber; i < 10; ++i)
 	{
 		board[row][col] = i;
@@ -280,7 +282,7 @@ bool Sudoku::recursiveFill(int row, int col)
 				return true;
 			}
 		}
-		//recursion unsuccessful, revert board[row][col] back to default value of 0
+			//Recursion unsuccessful, revert board[row][col] back to default value of 0
 		board[row][col] = 0;
 	}
 
